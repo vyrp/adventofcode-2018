@@ -15,11 +15,11 @@ namespace AdventOfCode2018
             {
                 switch (args[0])
                 {
-                    case "1":
-                        Challenge1.Solve();
+                    case "1.1":
+                        Challenge1Part1.Solve();
                         break;
-                    case "2":
-                        Challenge2.Solve();
+                    case "1.2":
+                        Challenge1Part2.Solve();
                         break;
                     default:
                         Console.Error.WriteLine($"Challenge not supported: '{args[0]}'.");

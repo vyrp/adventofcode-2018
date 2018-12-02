@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace AdventOfCode2018
 {
-    public static class Challenge2
+    public static class Challenge1Part2
     {
         public static void Solve()
         {
