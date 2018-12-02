@@ -2,18 +2,29 @@
 
 namespace AdventOfCode2018
 {
-    public class Program
+    public partial class Program
     {
-        public static void Main(string[] args)
+        public static int Main(string[] args)
         {
             if (args.Length == 0)
             {
                 ShowUsage();
+                return 0;
             }
             else
             {
-                Console.WriteLine($"Running challenge {args[0]}");
+                switch (args[0])
+                {
+                    case "1":
+                        SolveChallenge1();
+                        break;
+                    default:
+                        Console.Error.WriteLine($"Challenge not supported: '{args[0]}'.");
+                        return 1;
+                }
             }
+
+            return 0;
         }
 
         private static void ShowUsage()
