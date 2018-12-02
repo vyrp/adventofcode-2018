@@ -1,12 +1,31 @@
 ﻿using System;
 
-namespace adventofcode_2018
+namespace AdventOfCode2018
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            if (args.Length == 0)
+            {
+                ShowUsage();
+            }
+            else
+            {
+                Console.WriteLine($"Running challenge {args[0]}");
+            }
+        }
+
+        private static void ShowUsage()
+        {
+            const string Usage =
+@"Usage:
+    dotnet run <challenge_num>
+
+Where:
+    <challenge_num>: The challenge number.";
+
+            Console.WriteLine(Usage);
         }
     }
 }
