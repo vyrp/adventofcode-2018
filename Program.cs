@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace AdventOfCode2018
 {
@@ -16,16 +17,16 @@ namespace AdventOfCode2018
                 switch (args[0])
                 {
                     case "1.1":
-                        Challenge1Part1.Solve();
+                        Challenge1Part1.Solve(ReadInput());
                         break;
                     case "1.2":
-                        Challenge1Part2.Solve();
+                        Challenge1Part2.Solve(ReadInput());
                         break;
                     case "2.1":
-                        Challenge2Part1.Solve();
+                        Challenge2Part1.Solve(ReadInput());
                         break;
                     case "2.2":
-                        Challenge2Part2.Solve();
+                        Challenge2Part2.Solve(ReadInput());
                         break;
                     default:
                         Console.Error.WriteLine($"Challenge not supported: '{args[0]}'.");
@@ -46,6 +47,15 @@ Where:
     <challenge_num>: The challenge number.";
 
             Console.WriteLine(Usage);
+        }
+
+        private static string[] ReadInput()
+        {
+            return Console.In.ReadToEnd()
+                .Split('\n')
+                .Where(line => !string.IsNullOrWhiteSpace(line))
+                .Select(line => line.Trim())
+                .ToArray();
         }
     }
 }

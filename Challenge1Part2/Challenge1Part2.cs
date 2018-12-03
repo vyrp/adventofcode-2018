@@ -7,13 +7,9 @@ namespace AdventOfCode2018
 {
     public static class Challenge1Part2
     {
-        public static void Solve()
+        public static void Solve(string[] lines)
         {
-            int[] numbers = Console.In.ReadToEnd()
-                .Split('\n')
-                .Where(line => !string.IsNullOrWhiteSpace(line))
-                .Select(int.Parse)
-                .ToArray();
+            int[] numbers = lines.Select(int.Parse).ToArray();
 
             int sum = 0;
             int idx = 0;

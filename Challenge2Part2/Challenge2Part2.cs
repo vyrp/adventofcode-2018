@@ -7,14 +7,8 @@ namespace AdventOfCode2018
 {
     public static class Challenge2Part2
     {
-        public static void Solve()
+        public static void Solve(string[] words)
         {
-            string[] words = Console.In.ReadToEnd()
-                .Split('\n')
-                .Where(line => !string.IsNullOrWhiteSpace(line))
-                .Select(line => line.Trim())
-                .ToArray();
-
             for (int i = 0; i < words.Length - 1; i++)
             {
                 for (int j = i + 1; j < words.Length; j++)

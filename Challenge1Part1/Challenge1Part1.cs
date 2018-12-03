@@ -6,13 +6,9 @@ namespace AdventOfCode2018
 {
     public static class Challenge1Part1
     {
-        public static void Solve()
+        public static void Solve(string[] lines)
         {
-            int sum = Console.In.ReadToEnd()
-                .Split('\n')
-                .Where(line => !string.IsNullOrWhiteSpace(line))
-                .Select(int.Parse)
-                .Sum();
+            int sum = lines.Select(int.Parse).Sum();
 
             Console.WriteLine(sum);
         }
