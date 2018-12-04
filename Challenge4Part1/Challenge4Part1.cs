@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
+using MoreLinq;
+
 namespace AdventOfCode2018
 {
     public static class Challenge4Part1
@@ -45,9 +47,9 @@ namespace AdventOfCode2018
                 }
             }
 
-            (string mostAsleepGuard, int[] hisMinutes) = minutesByGuard.OrderByDescending(kvp => kvp.Value.Sum()).First();
+            (string mostAsleepGuard, int[] hisMinutes) = minutesByGuard.MaxBy(kvp => kvp.Value.Sum()).Single();
 
-            Console.WriteLine(Array.IndexOf(hisMinutes, hisMinutes.Max()) * int.Parse(mostAsleepGuard));
+            Console.WriteLine(hisMinutes.ArgMax() * int.Parse(mostAsleepGuard));
         }
     }
 }
