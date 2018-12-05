@@ -13,26 +13,21 @@ namespace AdventOfCode2018
         public static void Solve(string[] words)
         {
             var dict = words
-                .Select(line => inputRegex.Match(line))
-                .SelectMany(m => PointsInRectangle(
-                    int.Parse(m.Groups[1].Value),
-                    int.Parse(m.Groups[2].Value),
-                    int.Parse(m.Groups[3].Value),
-                    int.Parse(m.Groups[4].Value),
-                    int.Parse(m.Groups[5].Value)))
+                .Select(line => inputRegex.Extract(line, int.Parse, int.Parse, int.Parse, int.Parse, int.Parse))
+                .SelectMany(PointsInRectangle)
                 .GroupBy(t => (t.x, t.y), t => t.id)
                 .ToDictionary(g => g.Key, g => g.Count());
 
             Console.WriteLine(dict.Values.Count(count => count >= 2));
         }
 
-        private static IEnumerable<(int id, int x, int y)> PointsInRectangle(int id, int left, int top, int w, int h)
+        private static IEnumerable<(int id, int x, int y)> PointsInRectangle((int id, int left, int top, int w, int h) t)
         {
-            for (int i = left; i < left + w; i++)
+            for (int i = t.left; i < t.left + t.w; i++)
             {
-                for (int j = top; j < top + h; j++)
+                for (int j = t.top; j < t.top + t.h; j++)
                 {
-                    yield return (id, i, j);
+                    yield return (t.id, i, j);
                 }
             }
         }
