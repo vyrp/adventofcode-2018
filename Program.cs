@@ -58,6 +58,12 @@ namespace AdventOfCode2018
                     case "7.2":
                         Challenge7Part2.Solve(ReadInput());
                         break;
+                    case "8.1":
+                        Challenge8Part1.Solve(ReadInput());
+                        break;
+                    case "8.2":
+                        Challenge8Part2.Solve(ReadInput());
+                        break;
                     default:
                         Console.Error.WriteLine($"Challenge not supported: '{args[0]}'.");
                         return 1;
