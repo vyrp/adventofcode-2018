@@ -3,9 +3,9 @@ Solutions for the [adventofcode.com/2018](https://adventofcode.com/2018/about) c
 
 ## Execution
 ```
-cat .\<folder>\input.txt | dotnet run <num>
+dotnet run <num>
 ```
 Example:
 ```
-cat .\Challenge1Part1\input.txt | dotnet run 1.1
+dotnet run 1.1
 ```

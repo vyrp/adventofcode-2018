@@ -13,7 +13,7 @@ namespace AdventOfCode2018
         private static Regex fullInputRegex = new Regex(@"\[\d+-\d+-\d+ \d+:(\d+)\] (.+)");
         private static Regex guardIdRegex = new Regex(@"Guard #(\d+) begins shift");
 
-        public static void Solve(string[] lines)
+        public static void Solve(IEnumerable<string> lines)
         {
             var items = lines
                 .OrderBy(line => line)

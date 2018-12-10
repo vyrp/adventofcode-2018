@@ -10,8 +10,10 @@ namespace AdventOfCode2018
     {
         private static Regex inputRegex = new Regex(@"#(\d+) @ (\d+),(\d+): (\d+)x(\d+)");
 
-        public static void Solve(string[] words)
+        public static void Solve(IEnumerable<string> lines)
         {
+            string[] words = lines.ToArray();
+
             var dict = words
                 .Select(line => inputRegex.Match(line))
                 .SelectMany(m => PointsInRectangle(

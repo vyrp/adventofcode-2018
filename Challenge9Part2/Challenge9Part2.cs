@@ -10,7 +10,7 @@ namespace AdventOfCode2018
 {
     public static class Challenge9Part2
     {
-        public static void Solve(string[] lines)
+        public static void Solve(IEnumerable<string> lines)
         {
             Console.WriteLine("TODO");
         }

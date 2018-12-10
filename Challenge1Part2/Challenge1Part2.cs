@@ -7,7 +7,7 @@ namespace AdventOfCode2018
 {
     public static class Challenge1Part2
     {
-        public static void Solve(string[] lines)
+        public static void Solve(IEnumerable<string> lines)
         {
             int[] numbers = lines.Select(int.Parse).ToArray();
 

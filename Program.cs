@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -38,7 +40,8 @@ Where:
 
         private static int ExecuteChallenge(string challengeNum, string partNum)
         {
-            var t = Type.GetType($"{nameof(AdventOfCode2018)}.Challenge{challengeNum}Part{partNum}");
+            var challengeName = $"Challenge{challengeNum}Part{partNum}";
+            var t = Type.GetType($"{nameof(AdventOfCode2018)}.{challengeName}");
 
             if (t == null)
             {
@@ -46,17 +49,15 @@ Where:
                 return 1;
             }
 
-            t.GetMethod("Solve").Invoke(null, new object[] { ReadInput() });
+            t.GetMethod("Solve").Invoke(null, new object[] { ReadInput(Path.Combine(challengeName, "input.txt")) });
             return 0;
         }
 
-        private static string[] ReadInput()
+        private static IEnumerable<string> ReadInput(string filePath)
         {
-            return Console.In.ReadToEnd()
-                .Split('\n')
+            return File.ReadLines(filePath)
                 .Where(line => !string.IsNullOrWhiteSpace(line))
-                .Select(line => line.Trim())
-                .ToArray();
+                .Select(line => line.Trim());
         }
     }
 }

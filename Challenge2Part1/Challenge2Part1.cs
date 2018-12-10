@@ -7,7 +7,7 @@ namespace AdventOfCode2018
 {
     public static class Challenge2Part1
     {
-        public static void Solve(string[] words)
+        public static void Solve(IEnumerable<string> words)
         {
             int twos = 0;
             int threes = 0;
