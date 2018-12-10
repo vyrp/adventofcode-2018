@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace AdventOfCode2018
 {
-    public partial class Program
+    public static class Program
     {
         public static int Main(string[] args)
         {
@@ -12,71 +13,15 @@ namespace AdventOfCode2018
                 ShowUsage();
                 return 0;
             }
-            else
+
+            var m = Regex.Match(args[0], @"^(\d+)\.([12])$");
+            if (!m.Success)
             {
-                switch (args[0])
-                {
-                    case "1.1":
-                        Challenge1Part1.Solve(ReadInput());
-                        break;
-                    case "1.2":
-                        Challenge1Part2.Solve(ReadInput());
-                        break;
-                    case "2.1":
-                        Challenge2Part1.Solve(ReadInput());
-                        break;
-                    case "2.2":
-                        Challenge2Part2.Solve(ReadInput());
-                        break;
-                    case "3.1":
-                        Challenge3Part1.Solve(ReadInput());
-                        break;
-                    case "3.2":
-                        Challenge3Part2.Solve(ReadInput());
-                        break;
-                    case "4.1":
-                        Challenge4Part1.Solve(ReadInput());
-                        break;
-                    case "4.2":
-                        Challenge4Part2.Solve(ReadInput());
-                        break;
-                    case "5.1":
-                        Challenge5Part1.Solve(ReadInput());
-                        break;
-                    case "5.2":
-                        Challenge5Part2.Solve(ReadInput());
-                        break;
-                    case "6.1":
-                        Challenge6Part1.Solve(ReadInput());
-                        break;
-                    case "6.2":
-                        Challenge6Part2.Solve(ReadInput());
-                        break;
-                    case "7.1":
-                        Challenge7Part1.Solve(ReadInput());
-                        break;
-                    case "7.2":
-                        Challenge7Part2.Solve(ReadInput());
-                        break;
-                    case "8.1":
-                        Challenge8Part1.Solve(ReadInput());
-                        break;
-                    case "8.2":
-                        Challenge8Part2.Solve(ReadInput());
-                        break;
-                    case "9.1":
-                        Challenge9Part1.Solve(ReadInput());
-                        break;
-                    case "9.2":
-                        Challenge9Part2.Solve(ReadInput());
-                        break;
-                    default:
-                        Console.Error.WriteLine($"Challenge not supported: '{args[0]}'.");
-                        return 1;
-                }
+                Console.Error.WriteLine($"Invalid challenge name: '{args[0]}'.");
+                return 1;
             }
 
-            return 0;
+            return ExecuteChallenge(m.Groups[1].Value, m.Groups[2].Value);
         }
 
         private static void ShowUsage()
@@ -89,6 +34,20 @@ Where:
     <challenge_num>: The challenge number.";
 
             Console.WriteLine(Usage);
+        }
+
+        private static int ExecuteChallenge(string challengeNum, string partNum)
+        {
+            var t = Type.GetType($"{nameof(AdventOfCode2018)}.Challenge{challengeNum}Part{partNum}");
+
+            if (t == null)
+            {
+                Console.Error.WriteLine($"Challenge not found: '{challengeNum}.{partNum}'.");
+                return 1;
+            }
+
+            t.GetMethod("Solve").Invoke(null, new object[] { ReadInput() });
+            return 0;
         }
 
         private static string[] ReadInput()
