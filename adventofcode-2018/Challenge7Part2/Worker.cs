@@ -1,13 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text.RegularExpressions;
-
-using MoreLinq;
-
-namespace AdventOfCode2018.Challenge7
+﻿namespace AdventOfCode2018.Challenge7
 {
     internal sealed class Worker
     {
