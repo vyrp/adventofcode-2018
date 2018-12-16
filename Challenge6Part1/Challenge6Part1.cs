@@ -25,26 +25,15 @@ namespace AdventOfCode2018
             var maxY = points.Max(p => p.y);
 
             var map = new int[maxX + 1, maxY + 1];
-
             for (int x = minX; x <= maxX; x++)
             {
                 for (int y = minY; y <= maxY; y++)
                 {
-                    List<int> closest = new List<int>();
-                    int closestDist = int.MaxValue;
-                    for (int pi = 0; pi < points.Length; pi++)
-                    {
-                        int dist = Dist(x, y, points[pi].x, points[pi].y);
-                        if (dist < closestDist)
-                        {
-                            closestDist = dist;
-                            closest = new List<int> { pi };
-                        }
-                        else if (dist == closestDist)
-                        {
-                            closest.Add(pi);
-                        }
-                    }
+                    List<int> closest = points
+                        .Select((p, i) => (p, i))
+                        .MinBy(t => Dist(x, y, t.p.x, t.p.y))
+                        .Select(t => t.i)
+                        .ToList();
 
                     map[x, y] = closest.Count == 1 ? closest[0] : -1;
                 }
