@@ -10,4 +10,10 @@
     <PackageReference Include="morelinq" Version="3.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="*\input.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
