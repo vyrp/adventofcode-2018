@@ -27,9 +27,8 @@ namespace AdventOfCode2018
                     points[i % players] += i;
 
                     current = (current - 7 + marbles.Count) % marbles.Count;
-                    var v = marbles[current];
+                    points[i % players] += marbles[current];
                     marbles.RemoveAt(current);
-                    points[i % players] += v;
                 }
                 else
                 {
